@@ -67,7 +67,7 @@ elmo-hikes/
 
 ## Contributors
 - **Alessio** - BCIT CST Student that loves the show breaking bad.
-- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
+- **Teammate Name** - BCIgitT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 
 ---
 
