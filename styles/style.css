@@ -1,1 +1,61 @@
+/* ---------- Page basics ---------- */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+/* ---------- Navbar ---------- */
+.navbar {
+  display: flex; /* put the logo and links in a row */
+  justify-content: space-between; /* logo on the left, links on the right */
+  align-items: center;
+  flex-wrap: wrap; /* let links drop to a new line on small screens */
+  padding: 12px 24px;
+  background-color: #1e3a5f;
+}
+
+/* Logo + site name on the left */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* List of links on the right */
+.navbar-links {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none; /* remove the bullet points */
+}
+
+.navbar-links a {
+  display: block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Highlight a link when you hover over it */
+.navbar-links a:hover {
+  background-color: #2f5a8a;
+}
+
+/* The page you are currently on */
+.navbar-links a.active {
+  background-color: #f5a623;
+  color: #1e3a5f;
+}
