@@ -1,11 +1,9 @@
 /* ---------- Page basics ---------- */
-body {
+.body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 
-  background: linear-gradient(180deg,
-      #f4f7fb 0%,
-      #b0d4ff 100%);
+  background: #e7e7e7
 }
 
 /* ---------- Navbar ---------- */
@@ -99,14 +97,16 @@ body {
     0 10px 30px rgba(30, 58, 95, 0.15);
 }
 
+.border-blue {
+  border-radius: 20px;
+  border: 4px solid #1e3a5f;
+}
+
 .hero-section {
   max-width: 1100px;
   margin: 40px auto;
   padding: 40px;
   text-align: center;
   background: rgba(234, 241, 241, 0.75);
-  backdrop-filter: blur(8px);
   border-radius: 24px;
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.08);
 }

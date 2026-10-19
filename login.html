@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>My BCIT Project</title>
+    <meta name="comp1800 template" content="My 1800 App" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Other libraries go here -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script type="module" src="/src/site-navbar.js"></script>
+  </head>
+
+  <body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+    <!-- Stuff for body goes here -->
+     
+    <!-- Navbar (Look in src.site-navbar.js if you want to change the code)-->
+    <site-navbar></site-navbar>
+
+    <!-- Main section of page-->
+    <main class="container px-4 py-5">
+    
+      <div class="hero-section shadow rounded-3xl mx-auto p-4 p-md-5" style="max-width: 800px;">
+    
+        <!-- Placeholder notice -->
+        <div class="alert alert-warning text-center" role="alert">
+          <strong>Placeholder:</strong>
+          Login and account creation are not functional yet.
+        </div>
+    
+        <!-- Logo -->
+        <img class="d-block mx-auto mb-4 rounded-3xl border-blue shadow" src="./images/logo.jpg" alt="DTC15 logo" width="90" height="90">
+    
+        <!-- Page heading -->
+        <h1 class="display-6 fw-bold text-center mb-2">
+          Welcome back!
+        </h1>
+    
+        <p class="text-center mb-5">
+          Stay safe online. Log in to access your account.
+        </p>
+    
+        <!-- Login view -->
+        <div id="loginView">  
+          <form id="loginForm" class="mx-auto" style="max-width: 360px;">
+            <div class="mb-3">
+              <input type="email" id="loginEmail" class="form-control" placeholder="Email" required>
+            </div>
+    
+            <div class="mb-3">
+              <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
+            </div>
+    
+            <button type="submit" class="btn btn-primary btn-lg w-100 shadow">
+              Login
+            </button>
+          </form>
+    
+          <p class="text-center mt-4 mb-0">
+            Don't have an account?
+            <a href="#" id="toSignup">Sign up</a>
+          </p>
+        </div>
+    
+        <!-- Signup view -->
+        <div id="signupView" class="d-none">
+          <form id="signupForm" class="mx-auto" style="max-width: 360px;">
+            <div class="mb-3">
+              <input type="text" id="signupName" class="form-control" placeholder="First name" required>
+            </div>
+
+            <div class="mb-3">
+              <input type="text" id="signupName" class="form-control" placeholder="Last name" required>
+            </div>
+        
+            <div class="mb-3">
+              <input type="email" id="signupEmail" class="form-control" placeholder="Email" required>
+            </div>
+        
+            <div class="mb-3">
+              <input type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
+            </div>
+        
+            <button type="submit" class="btn btn-primary btn-lg w-100 shadow">
+              Sign Up
+            </button>
+          </form>
+          <p class="text-center mt-4 mb-0">
+            Already have an account?
+            <a href="#" id="toLogin">Login</a>
+          </p>
+        </div>
+
+      </div>   
+    </main>
+    <!-- Main section of page end-->
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+    <script>
+      const loginView = document.getElementById("loginView");
+      const signupView = document.getElementById("signupView");
+
+        document.getElementById("toSignup").addEventListener("click", function (event) {
+          event.preventDefault();
+
+          loginView.classList.add("d-none");
+          signupView.classList.remove("d-none");
+        });
+
+        document.getElementById("toLogin").addEventListener("click", function (event) {
+          event.preventDefault();
+
+          signupView.classList.add("d-none");
+          loginView.classList.remove("d-none");
+        });
+    </script>
+
+
+    <!-- Link to scripts of your own -->
+    <script type="module" src="./src/main.js"></script>
+    
+  </body>
+</html>
