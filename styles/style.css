@@ -1,7 +1,9 @@
 /* ---------- Page basics ---------- */
-body {
+.body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+
+  background: #e7e7e7
 }
 
 /* ---------- Navbar ---------- */
@@ -58,4 +60,53 @@ body {
 .navbar-links a.active {
   background-color: #f5a623;
   color: #1e3a5f;
+}
+
+/* Hero buttons */
+.btn-primary {
+  background-color: #1e3a5f;
+  border-color: #1e3a5f;
+}
+
+.btn-primary:hover {
+  background-color: #2f5a8a;
+  border-color: #2f5a8a;
+}
+
+/* Outline button */
+.btn-outline-primary {
+  color: #1e3a5f;
+  border-color: #1e3a5f;
+}
+
+.btn-outline-primary:hover {
+  background-color: #2f5a8a;
+  border-color: #2f5a8a;
+  color: white;
+}
+
+.hero-image {
+  width: 880px;
+  max-width: 100%;
+  height: auto;
+
+  border-radius: 20px;
+  border: 4px solid #1e3a5f;
+
+  box-shadow:
+    0 10px 30px rgba(30, 58, 95, 0.15);
+}
+
+.border-blue {
+  border-radius: 20px;
+  border: 4px solid #1e3a5f;
+}
+
+.hero-section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 40px;
+  text-align: center;
+  background: rgba(234, 241, 241, 0.75);
+  border-radius: 24px;
 }
