@@ -24,9 +24,28 @@
     <site-navbar></site-navbar>
 
     <!-- Main section of page-->
-    <main class="container py-4">
-      <h1>Home</h1>
-      <p>The home dashboard is coming soon.</p>
+    <main class="home-page container py-4">
+      <!-- Greeting (#userName gets the real name from Firebase in Sprint 2) -->
+      <section class="text-center mb-4">
+        <h1 class="fw-bold">Welcome, <span id="userName">user</span>!</h1>
+        <p class="lead">What would you like to do today?</p>
+      </section>
+
+      <!-- Big buttons for each main feature -->
+      <section class="home-buttons">
+        <a href="./scanner.html" class="home-btn" id="checkLinkBtn">Check a Link</a>
+        <a href="./report.html" class="home-btn" id="reportScamBtn">Report a Scam</a>
+        <a href="./alerts.html" class="home-btn" id="alertsBtn">Alerts</a>
+        <a href="./tips.html" class="home-btn" id="tipsBtn">Safety Tips</a>
+      </section>
+
+      <!-- Recent activity (filled from the database in Sprint 2) -->
+      <section class="recent-activity mt-5">
+        <h2>Recent Activity</h2>
+        <div id="recentActivity">
+          <p>No recent activity yet.</p>
+        </div>
+      </section>
     </main>
     <!-- Main section of page end-->
 
@@ -39,5 +58,6 @@
 
     <!-- Link to scripts of your own -->
     <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/home.js"></script>
   </body>
 </html>

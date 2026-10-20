@@ -75,6 +75,52 @@
   margin: 0;
 }
 
+/* ---------- Home page ---------- */
+.home-page {
+  max-width: 800px;
+}
+
+/* 2 x 2 grid of big buttons, 1 column on phones */
+.home-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 576px) {
+  .home-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Large, easy-to-tap buttons for older users */
+.home-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  padding: 20px;
+  border-radius: 16px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #1e3a5f;
+  box-shadow: 0 6px 16px rgba(30, 58, 95, 0.2);
+}
+
+.home-btn:hover {
+  color: white;
+  background-color: #2f5a8a;
+}
+
+#recentActivity {
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(234, 241, 241, 0.75);
+}
+
 /* Hero buttons */
 .btn-primary {
   background-color: #1e3a5f;
