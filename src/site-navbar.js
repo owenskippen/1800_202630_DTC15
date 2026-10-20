@@ -15,26 +15,38 @@ class MainNavbar extends HTMLElement {
   renderNavbar() {
     this.innerHTML = `
             <!-- Navbar: single source of truth -->
-            <nav class="navbar shadow">
-                <div style="display: flex; align-items: center; gap: 4px;">
-                    <a href="./index.html" class="navbar-brand">
-                        <img src="./images/logo.jpg" alt="DTC15 logo" class="navbar-logo" />
-                        DTC15
-                    </a>
+            <!-- Bootstrap navbar: links collapse behind a menu button on small screens -->
+            <nav class="navbar navbar-expand-lg navbar-dark shadow">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center gap-1">
+                        <a href="./index.html" class="navbar-brand">
+                            <img src="./images/logo.jpg" alt="DTC15 logo" class="navbar-logo" />
+                            DTC15
+                        </a>
 
-                    <div id="greetingNav" class="text-bold " style="display: none; color: white;">
-                        <span id="userGreeting"></span>
+                        <div id="greetingNav" class="text-bold " style="display: none; color: white;">
+                            <span id="userGreeting"></span>
+                        </div>
+                    </div>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mainNavLinks" aria-controls="mainNavLinks"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="mainNavLinks">
+                        <ul class="navbar-nav navbar-links ms-auto">
+                            <li class="nav-item" id="loginNav"><a class="nav-link" href="./login.html" id="loginLogoutLink">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./index.html">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./main.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./scanner.html">Scan a Link</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./report.html">Report</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./alerts.html">Alerts</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./tips.html">Tips</a></li>
+                        </ul>
                     </div>
                 </div>
-                <ul class="navbar-links">
-                    <li id="loginNav"><a href="./login.html" id="loginLogoutLink">Login</a></li>
-                    <li><a href="./index.html">About</a></li>
-                    <li><a href="./main.html">Home</a></li>
-                    <li><a href="./scanner.html">Scan a Link</a></li>
-                    <li><a href="./report.html">Report</a></li>
-                    <li><a href="./alerts.html">Alerts</a></li>
-                    <li><a href="./tips.html">Tips</a></li>
-                </ul>
             </nav>
         `;
 
