@@ -62,6 +62,19 @@
   color: #1e3a5f;
 }
 
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: 40px;
+  padding: 16px 24px;
+  text-align: center;
+  color: white;
+  background-color: #1e3a5f;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
 /* Hero buttons */
 .btn-primary {
   background-color: #1e3a5f;
