@@ -1,65 +1,89 @@
-# Elmo Hikes
-
+# 1800_202630_DTC15 — Scam-Safety Web App
 
 ## Overview
-Elmo Hikes is a client-side JavaScript web application that helps users discover and explore hiking trails. The app displays a curated list of hike trails, each with details such as name, location, difficulty, and an image. Users can browse the list and mark their favorite trails for easy access later.
+Our team DTC15 is building a mobile-friendly web application that helps elderly people and children recognize and avoid online scams. The app gives real-time warnings, flags suspicious links, and offers simple safety guidance in plain language with large, easy-to-use controls.
 
-Developed for the COMP 1800 course, this project applies User-Centred Design practices and agile project management, and demonstrates integration with Firebase backend services for storing user favorites.
+The idea came from our course theme, *"Older and Wiser"*, and from our user survey: 75% of people said they were very confident at spotting scams, yet 50% had been scammed before, and 50% take no action when they receive a suspicious message.
+
+Developed for the COMP 1800 course at BCIT, this project applies User-Centred Design practices and agile project management (Trello sprints), and uses Firebase for authentication, data storage, and hosting.
 
 ---
 
 
-## Features
+## Target Users
+- **Older adults** who are less familiar with common online scam tactics.
+- **Children** who are new to the internet, games, and online shopping.
+- Family members who want an easy tool to share with them.
 
-- Browse a list of curated hiking trails with images and details
-- Mark and unmark trails as favorites
-- View a personalized list of favorite hikes
-- Responsive design for desktop and mobile
+---
+
+
+## Planned Features
+- **Link scanner** – paste a suspicious link, message, or sender and get a Safe / Suspicious result with the reason.
+- **Breach alerts** – find out if your email or password has appeared in a data breach, with step-by-step instructions to secure your account.
+- **Scam reports** – report suspicious messages or sites, with screenshots, files, or links as evidence, so other users can be warned.
+- **Alerts** – scam alerts and breach alerts in one place, with adjustable alert preferences.
+- **Safety tips** – short, simple tips based on real scam types (fake shopping sites, game scams, money requests, urgent transfers, unknown senders).
+- **History** – log in to see your previous scans, warnings, and alerts.
+
+---
+
+
+## Pages
+| Page | File | Purpose | Status |
+|------|------|---------|--------|
+| Landing | `index.html` | Introduces the app | Done |
+| Login / Sign up | `login.html` | Firebase Authentication | Layout done, auth in progress |
+| Home | `main.html` | Dashboard with buttons to Check a link, Report a scam, Alerts, and Tips | Planned |
+| Scanner | `scanner.html` | Check & Verify a link, message, or sender | Planned |
+| Report | `report.html` | Report-a-scam form | Planned |
+| Alerts | `alerts.html` | Scam alerts and breach alerts | Planned |
+| Tips & Help | `tips.html` | Safety tips and support | Done |
+
+*Status as of Sprint 1.*
 
 ---
 
 
 ## Technologies Used
-
-- **Frontend**: HTML, CSS, JavaScript
+- **Frontend**: HTML, CSS, JavaScript, [Bootstrap 5](https://getbootstrap.com/)
 - **Build Tool**: [Vite](https://vitejs.dev/)
-- **Backend**: Firebase for hosting
-- **Database**: Firestore
+- **Backend**: Firebase Authentication and Firebase Hosting
+- **Database**: Cloud Firestore
+- **Design & Planning**: Figma (wireframes), FigJam, Trello
 
 ---
 
 
 ## Usage
-
 To run the application locally:
 
-1.  **Clone** the repository.
-2.  **Install dependencies** by running `npm install` in the project root directory.
-3.  **Start the development server** by running the command: `npm run dev`.
-4.  Open your browser and visit the local address shown in your terminal (usually `http://localhost:5173` or similar).
+1. **Clone** the repository.
+2. **Install dependencies** by running `npm install` in the project root directory.
+3. **Start the development server** by running `npm run dev`.
+4. Open your browser and visit the local address shown in your terminal (usually `http://localhost:5173`).
 
-Once the application is running:
-
-1.  Browse the list of hiking trails displayed on the main page.
-2.  Click the heart icon (or similar) to mark a trail as a favorite.
-3.  View your favorite hikes in the favorites section.
+To build for production, run `npm run build`.
 
 ---
 
 
 ## Project Structure
-
 ```
-elmo-hikes/
+1800_202630_DTC15/
 ├── src/
 │   ├── main.js
+│   └── site-navbar.js
 ├── styles/
-│   └── style.css
-├── public/
+│   ├── style.css
+│   └── tips.css
 ├── images/
 ├── index.html
+├── login.html
+├── tips.html
+├── skeleton.html
 ├── package.json
-├── README.md
+└── README.md
 ```
 
 ---
@@ -68,34 +92,32 @@ elmo-hikes/
 ## Contributors
 - Owen - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
 - Alessio - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: I have 20 cats.
-- Verosika - BCIT CST Student, enjoys listening to various different genres of music and loves to take care of her cat and dog. 
+- Verosika - BCIT CST Student, enjoys listening to various different genres of music and loves to take care of her cat and dog.
+
 ---
 
 
 ## Acknowledgments
-
-- Trail data and images are for demonstration purposes only.
+- Scam examples and tips are based on our team's user survey and are for educational purposes only.
 - Code snippets were adapted from resources such as [Stack Overflow](https://stackoverflow.com/) and [MDN Web Docs](https://developer.mozilla.org/).
-- Icons sourced from [FontAwesome](https://fontawesome.com/) and images from [Unsplash](https://unsplash.com/).
+- UI components from [Bootstrap](https://getbootstrap.com/).
 
 ---
 
 
 ## Limitations and Future Work
 ### Limitations
-
-- Limited trail details (e.g., no live trail conditions).
-- Accessibility features can be further improved.
+- The link scanner uses simple rules (e.g. non-HTTPS links, IP addresses, URL shorteners, misspelled brand names) and cannot catch every scam.
+- The app gives guidance only and is not a replacement for antivirus or official security advice.
 
 ### Future Work
-
-- Implement map view and trailhead directions.
-- Add filtering and sorting options (e.g., by difficulty, distance).
-- Create a dark mode for better usability in low-light conditions.
+- Connect the scanner to a real threat database for sender and link verification.
+- Add short video tips (75% of our survey respondents preferred video).
+- Track scam attempts over time and show trends.
+- Improve accessibility (larger text options, screen reader support).
 
 ---
 
 
 ## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License.
