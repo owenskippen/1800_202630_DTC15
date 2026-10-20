@@ -169,3 +169,11 @@
   background: rgba(234, 241, 241, 0.75);
   border-radius: 24px;
 }
+
+#greetingNav {
+  margin-left: 20px;
+  list-style: none;
+  color: white;
+  font-weight: bold;
+  font-size: larger;
+}
