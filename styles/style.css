@@ -7,11 +7,8 @@
 }
 
 /* ---------- Navbar ---------- */
+/* Layout comes from Bootstrap's navbar classes, we just set the colours */
 .navbar {
-  display: flex; /* put the logo and links in a row */
-  justify-content: space-between; /* logo on the left, links on the right */
-  align-items: center;
-  flex-wrap: wrap; /* let links drop to a new line on small screens */
   padding: 12px 24px;
   background-color: #1e3a5f;
 }
@@ -34,32 +31,35 @@
   object-fit: cover;
 }
 
-/* List of links on the right */
+/* List of links on the right (stacked in the menu on phones) */
 .navbar-links {
-  display: flex;
   gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none; /* remove the bullet points */
 }
 
-.navbar-links a {
-  display: block;
+.navbar-links .nav-link {
   padding: 8px 14px;
   border-radius: 6px;
   color: white;
-  text-decoration: none;
 }
 
 /* Highlight a link when you hover over it */
-.navbar-links a:hover {
+.navbar-links .nav-link:hover,
+.navbar-links .nav-link:focus {
+  color: white;
   background-color: #2f5a8a;
 }
 
 /* The page you are currently on */
-.navbar-links a.active {
+.navbar-links .nav-link.active {
   background-color: #f5a623;
   color: #1e3a5f;
+}
+
+/* Space between the brand and the opened menu on phones */
+@media (max-width: 991.98px) {
+  .navbar-links {
+    padding-top: 12px;
+  }
 }
 
 /* ---------- Footer ---------- */
@@ -80,20 +80,7 @@
   max-width: 800px;
 }
 
-/* 2 x 2 grid of big buttons, 1 column on phones */
-.home-buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-@media (max-width: 576px) {
-  .home-buttons {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Large, easy-to-tap buttons for older users */
+/* Large, easy-to-tap buttons for older users (grid comes from Bootstrap rows) */
 .home-btn {
   display: flex;
   align-items: center;
@@ -168,6 +155,14 @@
   text-align: center;
   background: rgba(234, 241, 241, 0.75);
   border-radius: 24px;
+}
+
+/* Less padding around the hero on phones so content has room */
+@media (max-width: 575.98px) {
+  .hero-section {
+    margin: 16px auto;
+    padding: 20px;
+  }
 }
 
 #greetingNav {

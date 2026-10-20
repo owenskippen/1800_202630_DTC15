@@ -9,10 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Other libraries go here -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="./styles/style.css" />
     <script type="module" src="/src/site-navbar.js"></script>
     <script type="module" src="/src/site-footer.js"></script>
@@ -37,54 +33,67 @@
       <section class="tips-section">
         <h2>Safety Tips</h2>
 
-        <div class="tips-container d-flex flex-wrap gap-3">
-          <article class="tips-card card p-3 flex-fill" style="width: 250px">
-            <h3>1. Check Links</h3>
-            <p>
-              Check the website address before opening a link. If you are not
-              sure, do not click it.
-            </p>
-          </article>
+        <!-- 1 column on phones, 2 on tablets, 3 on desktops -->
+        <div class="tips-container row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+          <div class="col">
+            <article class="tips-card card p-3 h-100">
+              <h3>1. Check Links</h3>
+              <p>
+                Check the website address before opening a link. If you are not
+                sure, do not click it.
+              </p>
+            </article>
+          </div>
 
-          <article class="tips-card card p-3 flex-fill" style="width: 250px">
-            <h3>2. Check the Sender</h3>
-            <p>
-              Be careful with emails or messages from people you don't know. Do
-              not share personal information.
-            </p>
-          </article>
+          <div class="col">
+            <article class="tips-card card p-3 h-100">
+              <h3>2. Check the Sender</h3>
+              <p>
+                Be careful with emails or messages from people you don't know. Do
+                not share personal information.
+              </p>
+            </article>
+          </div>
 
-          <article class="tips-card card p-3 flex-fill" style="width: 250px">
-            <h3>3. Don't Rush</h3>
-            <p>
-              Scammers may ask you to send money or act quickly. Take your time
-              and check first.
-            </p>
-          </article>
+          <div class="col">
+            <article class="tips-card card p-3 h-100">
+              <h3>3. Don't Rush</h3>
+              <p>
+                Scammers may ask you to send money or act quickly. Take your time
+                and check first.
+              </p>
+            </article>
+          </div>
 
-          <article class="tips-card card p-3 flex-fill" style="width: 250px">
-            <h3>4. Notice Security Warnings</h3>
-            <p>
-              If your browser warns you about an unsafe website, stop and leave
-              the page.
-            </p>
-          </article>
+          <div class="col">
+            <article class="tips-card card p-3 h-100">
+              <h3>4. Notice Security Warnings</h3>
+              <p>
+                If your browser warns you about an unsafe website, stop and leave
+                the page.
+              </p>
+            </article>
+          </div>
 
-          <article class="tips-card card p-3 flex-fill" style="width: 250px">
-            <h3>5. Block and Report</h3>
-            <p>
-              If you receive a scam message, do not reply. Block the sender and
-              report the message.
-            </p>
-          </article>
+          <div class="col">
+            <article class="tips-card card p-3 h-100">
+              <h3>5. Block and Report</h3>
+              <p>
+                If you receive a scam message, do not reply. Block the sender and
+                report the message.
+              </p>
+            </article>
+          </div>
 
-          <article class="tips-card card p-3 flex-fill" style="width: 250px">
-            <h3>6. Ask for Help</h3>
-            <p>
-              If you are unsure about a link or message, ask someone you trust
-              before taking action.
-            </p>
-          </article>
+          <div class="col">
+            <article class="tips-card card p-3 h-100">
+              <h3>6. Ask for Help</h3>
+              <p>
+                If you are unsure about a link or message, ask someone you trust
+                before taking action.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
