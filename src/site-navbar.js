@@ -1,11 +1,11 @@
 class MainNavbar extends HTMLElement {
-    constructor() {
-        super();
-        this.renderNavbar();
-    }
+  constructor() {
+    super();
+    this.renderNavbar();
+  }
 
-    renderNavbar() {
-        this.innerHTML = `
+  renderNavbar() {
+    this.innerHTML = `
             <!-- Navbar: single source of truth -->
             <nav class="navbar shadow">
                 <a href="#" class="navbar-brand">
@@ -14,13 +14,15 @@ class MainNavbar extends HTMLElement {
                 </a>
 
                 <ul class="navbar-links">
-                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="./index.html" class="active">Home</a></li>
+                    <li><a href="./login.html">Login</a></li>
                     <li><a href="#">Scan a Link</a></li>
                     <li><a href="#">About</a></li>
+                    <li><a href="./tips.html">Tips</a></li>
                 </ul>
             </nav>
         `;
-    }
+  }
 }
 
-customElements.define('site-navbar', MainNavbar);
+customElements.define("site-navbar", MainNavbar);
