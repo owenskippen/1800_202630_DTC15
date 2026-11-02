@@ -3,6 +3,15 @@ import { resolve } from "path";
 
 // Every page has to be listed here so "npm run build" includes it
 export default defineConfig({
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true
+      }
+    }
+  },
+
   build: {
     rollupOptions: {
       input: {
