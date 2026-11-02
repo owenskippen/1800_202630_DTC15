@@ -119,6 +119,10 @@
   border-color: #2f5a8a;
 }
 
+.btn-primary:click {
+  background-color: #2f5a8a;
+}
+
 /* Outline button */
 .btn-outline-primary {
   color: #1e3a5f;
