@@ -7,7 +7,12 @@ import {
     onAuthStateChanged
 } from "firebase/auth";
 
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import {
+    doc,
+    setDoc,
+    getDoc, 
+    serverTimestamp
+} from "firebase/firestore";
 
 let isSubmittingAuth = false;
 const loginView = document.getElementById("loginView");
@@ -47,7 +52,7 @@ document.getElementById("toLogin").addEventListener("click", function (event) {
 // Create a new account
 signupForm.addEventListener("submit", async function (event) {
     event.preventDefault();
-
+    isSubmittingAuth = true;
     const firstName = document.getElementById("signupFirstName").value.trim();
     const lastName = document.getElementById("signupLastName").value.trim();
     const email = document.getElementById("signupEmail").value.trim();
@@ -67,16 +72,12 @@ signupForm.addEventListener("submit", async function (event) {
         );
 
 
+
         await updateProfile(userCredential.user, {
             displayName: firstName + " " + lastName
         });
 
-        // Save the new user in the users collection (document ID = their uid)
-        await setDoc(doc(db, "users", userCredential.user.uid), {
-            name: firstName + " " + lastName,
-            email: email,
-            createdAt: serverTimestamp()
-        });
+        await checkUserInFirestore(userCredential.user);
 
         window.location.replace(MAIN_PAGE);
 
@@ -84,16 +85,38 @@ signupForm.addEventListener("submit", async function (event) {
     } catch (error) {
         console.error(error);
         isSubmittingAuth = false;
-
-        authMessage.textContent = getErrorMessage(error.code);
+        authMessage.textContent = error.message;
         authMessage.className = "text-center mt-3 text-danger";
     }
 });
 
+async function checkUserInFirestore(user) {
+    console.log("Checking Firestore for user:", user.uid);
+
+    const userRef = doc(db, "users", user.uid);
+
+    const userDoc = await getDoc(userRef);
+
+    if (!userDoc.exists()) {
+        console.log("User does not exist. Creating document...");
+
+        await setDoc(userRef, {
+            firstName: user.displayName ? user.displayName.split(" ")[0] : "",
+            lastName: user.displayName ? user.displayName.split(" ").slice(1).join(" ") : "",
+            email: user.email,
+            createdAt: serverTimestamp()
+        });
+
+        console.log("User successfully added to Firestore!");
+    } else {
+        console.log("User already exists in Firestore.");
+    }
+}
+
 // Log in to an existing account
 loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
-
+    isSubmittingAuth = true;
     const email = document.getElementById("loginEmail").value.trim();
     const password = document.getElementById("loginPassword").value;
 
@@ -107,17 +130,19 @@ loginForm.addEventListener("submit", async function (event) {
             password
         );
 
+        await checkUserInFirestore(userCredential.user);
 
         window.location.replace(MAIN_PAGE);
 
 
     } catch (error) {
         console.error(error);
-
-        authMessage.textContent = getErrorMessage(error.code);
+        isSubmittingAuth = false;
+        authMessage.textContent = error.message;
         authMessage.className = "text-center mt-3 text-danger";
     }
 });
+
 
 // Display readable error messages
 function getErrorMessage(errorCode) {
