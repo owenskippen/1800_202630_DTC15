@@ -52,6 +52,13 @@
 
         <!-- Where scanning messages and stuff will appear -->
         <p id="scanMessage" class="text-center mt-3" aria-live="polite"></p>
+
+        <!-- Scan status light (amber pulse = scanning, green = done) -->
+        <div id="scanStatus" class="scan-status" role="status" aria-live="polite" hidden>
+          <span id="scanStatusLight" class="scan-status-light"></span>
+          <span id="scanStatusText"></span>
+        </div>
+
         <button id="checkResultButton" type="button" class="btn btn-outline-primary btn-lg mt-2" hidden>
           Check Results
         </button>
