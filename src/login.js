@@ -1,4 +1,4 @@
-import { auth } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 
 import {
     createUserWithEmailAndPassword,
@@ -6,6 +6,8 @@ import {
     updateProfile,
     onAuthStateChanged
 } from "firebase/auth";
+
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 let isSubmittingAuth = false;
 const loginView = document.getElementById("loginView");
@@ -53,6 +55,9 @@ signupForm.addEventListener("submit", async function (event) {
 
     authMessage.textContent = "";
 
+    // Stop the auth listener redirecting before the user document is saved
+    isSubmittingAuth = true;
+
     try {
         // Create the Firebase account
         const userCredential = await createUserWithEmailAndPassword(
@@ -66,11 +71,19 @@ signupForm.addEventListener("submit", async function (event) {
             displayName: firstName + " " + lastName
         });
 
+        // Save the new user in the users collection (document ID = their uid)
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+            name: firstName + " " + lastName,
+            email: email,
+            createdAt: serverTimestamp()
+        });
+
         window.location.replace(MAIN_PAGE);
 
 
     } catch (error) {
         console.error(error);
+        isSubmittingAuth = false;
 
         authMessage.textContent = getErrorMessage(error.code);
         authMessage.className = "text-center mt-3 text-danger";
