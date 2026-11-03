@@ -1,3 +1,11 @@
+import { auth, db } from "./firebase.js";
+import { onAuthStateChanged } from "firebase/auth";
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from "firebase/firestore";
+
 // Get the elements from the scanner page
 const linkInput = document.getElementById("linkInput");
 const scanButton = document.getElementById("scanButton");
@@ -8,6 +16,24 @@ const scanResults = document.getElementById("scanResults");
 // Store the analysis ID
 let currentAnalysisId = "";
 
+// Store the URL that was submitted
+let currentScannedUrl = "";
+
+// Check if the scan has already been saved
+let scanSaved = false;
+
+
+// Wait until Firebase finishes checking the user's login
+function getCurrentUser() {
+    return new Promise((resolve) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            unsubscribe();
+            resolve(user);
+        });
+    });
+}
+
+
 // Submit the URL to VirusTotal
 scanButton.addEventListener("click", async function () {
 
@@ -17,6 +43,11 @@ scanButton.addEventListener("click", async function () {
         scanMessage.textContent = "Please enter a URL.";
         return;
     }
+
+    // Reset the previous scan information
+    currentAnalysisId = "";
+    currentScannedUrl = url;
+    scanSaved = false;
 
     scanMessage.textContent = "Submitting URL to VirusTotal...";
     scanResults.innerHTML = "";
@@ -90,6 +121,51 @@ checkResultButton.addEventListener("click", async function () {
         const suspicious = stats.suspicious || 0;
         const harmless = stats.harmless || 0;
         const undetected = stats.undetected || 0;
+
+        // Get the currently logged-in user
+        const user = await getCurrentUser();
+
+        // Only save scans for logged-in users
+        if (user && !scanSaved) {
+            try {
+                // Get the user's scans collection
+                const scansCollection = collection(
+                    db,
+                    "users",
+                    user.uid,
+                    "scans"
+                );
+
+                // Save the scan information
+                const docRef = await addDoc(scansCollection, {
+                    url: currentScannedUrl,
+                    scanDate: serverTimestamp(),
+                    malicious: malicious,
+                    suspicious: suspicious,
+                    harmless: harmless,
+                    undetected: undetected,
+                    analysisID: currentAnalysisId
+                });
+
+                console.log("Scan saved to Firestore:", docRef.id);
+
+                scanSaved = true;
+
+                scanMessage.textContent =
+                    "Scan completed and saved to your scan history!";
+
+            } catch (error) {
+                console.error("Error saving scan:", error);
+
+                scanMessage.textContent =
+                    "Scan completed, but could not save it to your history: "
+                    + error.message;
+            }
+
+        } else if (!user) {
+            scanMessage.textContent =
+                "Scan completed, but you must be logged in to save your scan.";
+        }
 
         // Display the results
         scanResults.innerHTML = `
