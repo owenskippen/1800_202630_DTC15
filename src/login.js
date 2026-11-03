@@ -60,6 +60,9 @@ signupForm.addEventListener("submit", async function (event) {
 
     authMessage.textContent = "";
 
+    // Stop the auth listener redirecting before the user document is saved
+    isSubmittingAuth = true;
+
     try {
         // Create the Firebase account
         const userCredential = await createUserWithEmailAndPassword(
