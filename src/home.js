@@ -17,8 +17,9 @@ function showUserName() {
     if (!user) return;
 
     const userDoc = await getDoc(doc(db, "users", user.uid));
-    // Accounts made before the users collection existed have no document yet
-    const name = userDoc.exists() ? userDoc.data().name : user.displayName;
+    // New documents store firstName/lastName; older ones store name or have no document yet
+    const data = userDoc.exists() ? userDoc.data() : {};
+    const name = data.firstName ? `${data.firstName} ${data.lastName}`.trim() : (data.name || user.displayName);
 
     if (name) {
       document.getElementById("userName").textContent = name;
