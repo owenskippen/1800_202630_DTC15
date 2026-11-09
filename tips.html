@@ -10,6 +10,7 @@
 
     <!-- Other libraries go here -->
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/tips.css" />
     <script type="module" src="/src/site-navbar.js"></script>
     <script type="module" src="/src/site-footer.js"></script>
   </head>
@@ -32,69 +33,33 @@
 
       <section class="tips-section">
         <h2>Safety Tips</h2>
-
-        <!-- 1 column on phones, 2 on tablets, 3 on desktops -->
         <div class="tips-container row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-          <div class="col">
-            <article class="tips-card card p-3 h-100">
-              <h3>1. Check Links</h3>
-              <p>
-                Check the website address before opening a link. If you are not
-                sure, do not click it.
-              </p>
-            </article>
+          <!-- This will be removed in tips.js line ~50 -->
+          <div class="loading-tips text-center">
+            <p>Loading tips...</p>
           </div>
-
-          <div class="col">
-            <article class="tips-card card p-3 h-100">
-              <h3>2. Check the Sender</h3>
-              <p>
-                Be careful with emails or messages from people you don't know. Do
-                not share personal information.
-              </p>
-            </article>
-          </div>
-
-          <div class="col">
-            <article class="tips-card card p-3 h-100">
-              <h3>3. Don't Rush</h3>
-              <p>
-                Scammers may ask you to send money or act quickly. Take your time
-                and check first.
-              </p>
-            </article>
-          </div>
-
-          <div class="col">
-            <article class="tips-card card p-3 h-100">
-              <h3>4. Notice Security Warnings</h3>
-              <p>
-                If your browser warns you about an unsafe website, stop and leave
-                the page.
-              </p>
-            </article>
-          </div>
-
-          <div class="col">
-            <article class="tips-card card p-3 h-100">
-              <h3>5. Block and Report</h3>
-              <p>
-                If you receive a scam message, do not reply. Block the sender and
-                report the message.
-              </p>
-            </article>
-          </div>
-
-          <div class="col">
-            <article class="tips-card card p-3 h-100">
-              <h3>6. Ask for Help</h3>
-              <p>
-                If you are unsure about a link or message, ask someone you trust
-                before taking action.
-              </p>
-            </article>
-          </div>
+          
+          <!-- tips.js will put the Firestore tips here!!! -->
         </div>
+      </section>
+
+      <!-- Add a Tip -->
+      <section class="help-section bg-light p-4 rounded mt-4">
+        <h2>Add Your Own Safety Tip</h2>
+        <p>Share a safety tip that could help other users.</p>
+        <form id="addTipForm">
+          <div class="mb-3">
+            <input type="text" id="tipTitle" class="form-control" placeholder="Tip title" required>
+          </div>
+          <div class="mb-3">
+            <textarea id="tipDescription" class="form-control" placeholder="Write your safety tip" rows="4"
+              required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Add Tip
+          </button>
+          <p id="tipMessage" class="mt-3"></p>
+        </form>
       </section>
 
       <section class="help-section bg-light p-4 rounded mt-4">
@@ -115,5 +80,6 @@
 
     <!-- Link to scripts of your own -->
     <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/tips.js"></script>
   </body>
 </html>
