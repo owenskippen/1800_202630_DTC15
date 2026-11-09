@@ -26,7 +26,37 @@
     <!-- Main section of page-->
     <main class="container py-4">
       <h1>Alerts</h1>
-      <p>Scam alerts and breach alerts are coming soon.</p>
+      <section class="mb-4">
+        <h2>Scam Alerts</h2>
+        <div id="scamAlerts">
+          <button type="button" class="card w-100 p-3 text-start alert-card">
+            <strong>Fake delivery text</strong>
+            <span
+              >A text message asks you to pay a fee to receive a package.</span
+            >
+            <span class="alert-details" hidden>
+              Example message: “Your package is on hold. Pay the delivery fee to
+              continue.”
+            </span>
+          </button>
+        </div>
+      </section>
+      <section>
+        <h2>Breach Alerts</h2>
+        <div id="breachAlerts">
+          <button type="button" class="card w-100 p-3 text-start alert-card">
+            <strong>Example data breach</strong>
+            <span
+              >A website reports that some account information was
+              exposed.</span
+            >
+            <span class="alert-details" hidden>
+              Example breach details: Email addresses and usernames were
+              exposed.
+            </span>
+          </button>
+        </div>
+      </section>
     </main>
     <!-- Main section of page end-->
 
@@ -39,5 +69,6 @@
 
     <!-- Link to scripts of your own -->
     <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/alerts.js"></script>
   </body>
 </html>
