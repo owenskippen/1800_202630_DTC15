@@ -1,0 +1,15 @@
+.delete-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.delete-button img {
+    width: clamp(20px, 3vw, 20px);
+    height: auto;
+    display: block;
+    cursor: pointer;
+}
