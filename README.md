@@ -36,14 +36,14 @@ Developed for the COMP 1800 course at BCIT, this project applies User-Centred De
 |------|------|---------|--------|
 | Landing | `index.html` | Introduces the app | Done |
 | Login / Sign up | `login.html` | Firebase Authentication | Done |
-| Home | `main.html` | Dashboard with buttons to Check a link, Report a scam, Alerts, and Tips, plus your recent scans | Done |
+| Home | `main.html` | Dashboard with buttons to Check a link, Report a scam, Alerts, and Tips, plus your recent scans, the latest alerts, and alert settings | Done |
 | Scanner | `scanner.html` | Check & Verify a link with VirusTotal | Done (needs the local server) |
 | Report | `report.html` | Report-a-scam form | Done |
 | Alerts | `alerts.html` | Scam alerts and breach alerts | Done |
 | Tips & Help | `tips.html` | Safety tips and support | Done |
 | Scan History | `history.html` | Every link you have scanned, newest first | Done |
 
-*Status as of Sprint 3.*
+*Status as of Sprint 4.*
 
 ---
 
@@ -52,7 +52,7 @@ Developed for the COMP 1800 course at BCIT, this project applies User-Centred De
 - **Frontend**: HTML, CSS, JavaScript, [Bootstrap 5](https://getbootstrap.com/)
 - **Build Tool**: [Vite](https://vitejs.dev/)
 - **Backend**: Firebase Authentication and Firebase Hosting
-- **Database**: Cloud Firestore
+- **Database**: Cloud Firestore, protected by security rules in `firestore.rules`
 - **Design & Planning**: Figma (wireframes), FigJam, Trello
 
 ---
@@ -75,23 +75,48 @@ To deploy the site to Firebase Hosting:
 1. Run `npm run build`.
 2. Run `firebase deploy --only hosting`.
 
+If you change `firestore.rules`, deploy them with `firebase deploy --only firestore:rules`.
+
+Scam and breach alerts are stored in the Firestore `alerts` collection (fields: `title`, `type` = `scam` or `breach`, `summary`, `details`, `createdAt`). Add new alerts in the Firebase console; the app can only read them.
+
 ---
 
 
 ## Project Structure
 ```
 1800_202630_DTC15/
+├── server/
+│   └── server.js         # VirusTotal link-check API
 ├── src/
+│   ├── alerts.js
+│   ├── auth-guard.js
+│   ├── firebase.js
+│   ├── history.js
+│   ├── home.js
+│   ├── login.js
 │   ├── main.js
-│   └── site-navbar.js
+│   ├── report.js
+│   ├── scan-list.js
+│   ├── scanner.js
+│   ├── site-footer.js
+│   ├── site-navbar.js
+│   └── tips.js
 ├── styles/
 │   ├── style.css
 │   └── tips.css
 ├── images/
 ├── index.html
 ├── login.html
+├── main.html
+├── scanner.html
+├── report.html
+├── alerts.html
 ├── tips.html
+├── history.html
 ├── skeleton.html
+├── firebase.json
+├── firestore.rules
+├── vite.config.js
 ├── package.json
 └── README.md
 ```
