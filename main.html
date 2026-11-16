@@ -41,13 +41,21 @@
       <div class="col"><a href="./tips.html" class="home-btn" id="tipsBtn">Safety Tips</a></div>
     </section>
 
-    <!-- Recent activity (home.js fills this with the user's latest scans from Firestore) -->
+    <!-- Recent activity (home.js fills this with the user's latest scans and alerts from Firestore) -->
     <section class="recent-activity mt-5">
       <h2>Recent Activity</h2>
+
+      <h3 class="h5 mt-3">Your recent scans</h3>
       <div id="recentActivity">
         <p>No recent activity yet.</p>
       </div>
       <a href="./history.html" class="d-inline-block mt-3" id="scanHistoryLink">See all scans</a>
+
+      <h3 class="h5 mt-4">Latest alerts</h3>
+      <div id="recentAlerts">
+        <p>No alerts right now.</p>
+      </div>
+      <a href="./alerts.html" class="d-inline-block mt-3" id="allAlertsLink">See all alerts</a>
     </section>
   </main>
   <!-- Main section of page end-->
