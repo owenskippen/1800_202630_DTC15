@@ -57,6 +57,21 @@
       </div>
       <a href="./alerts.html" class="d-inline-block mt-3" id="allAlertsLink">See all alerts</a>
     </section>
+
+    <!-- Alert settings (home.js saves these to the user's document in Firestore) -->
+    <section class="alert-settings mt-5">
+      <h2>Alert settings</h2>
+      <p>Choose which alerts you want to see.</p>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="scamAlertsSwitch" data-alert-type="scam" checked disabled>
+        <label class="form-check-label" for="scamAlertsSwitch">Scam alerts</label>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="breachAlertsSwitch" data-alert-type="breach" checked disabled>
+        <label class="form-check-label" for="breachAlertsSwitch">Breach alerts</label>
+      </div>
+      <p id="alertSettingsStatus" class="mt-2 mb-0" aria-live="polite"></p>
+    </section>
   </main>
   <!-- Main section of page end-->
 
