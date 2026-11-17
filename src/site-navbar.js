@@ -42,7 +42,7 @@ class MainNavbar extends HTMLElement {
                             <li class="nav-item"><a class="nav-link" href="./main.html">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="./scanner.html">Scan a Link</a></li>
                             <li class="nav-item"><a class="nav-link" href="./report.html">Report</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./alerts.html">Alerts</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./breaches.html">Breach Scanner</a></li>
                             <li class="nav-item"><a class="nav-link" href="./tips.html">Tips</a></li>
                         </ul>
                     </div>

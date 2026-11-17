@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>My BCIT Project</title>
+    <meta name="comp1800 template" content="My 1800 App" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Other libraries go here -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script type="module" src="/src/site-navbar.js"></script>
+    <script type="module" src="/src/site-footer.js"></script>
+  </head>
+
+  <body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+    <!-- Stuff for body goes here -->
+     
+    <!-- Navbar (Look in src.site-navbar.js if you want to change the code)-->
+    <site-navbar></site-navbar>
+
+    <!-- Main section of page-->
+    <main class="container py-4">
+      <section class="container my-4">
+        <h2>Check Your Email</h2>
+
+        <p>
+          Find out if your email address appears in any
+          known data breaches.
+        </p>
+
+        <form id="emailCheckForm">
+          <input type="email" id="emailInput" class="form-control mb-3" placeholder="Enter your email address" required>
+
+          <button type="submit" class="btn btn-primary">
+            Check Email
+          </button>
+        </form>
+
+        <div id="emailCheckMessage" class="mt-3"></div>
+
+        <div id="emailResults" class="mt-3"></div>
+      </section>
+
+    </main>
+    <!-- Main section of page end-->
+
+    <!-- Footer (Look in src.site-footer.js if you want to change the code)-->
+    <site-footer></site-footer>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/breaches.js"></script>
+  </body>
+</html>
