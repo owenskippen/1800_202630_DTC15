@@ -135,6 +135,55 @@ app.get("/api/analysis/:id", async (req, res) => {
     }
 });
 
+
+// Check Breaches
+app.get("/api/check-email", async (req, res) => {
+    const email = req.query.email;
+
+    if (!email) {
+        return res.status(400).json({
+            error: "Please provide an email address."
+        });
+    }
+
+    try {
+        const encodedEmail = encodeURIComponent(email);
+
+        const response = await fetch(
+            `https://api.xposedornot.com/v1/check-email/${encodedEmail}`
+        );
+
+        const data = await response.json();
+
+        if (response.status === 404) {
+            return res.json({
+                found: false,
+                breaches: []
+            });
+        }
+
+        if (!response.ok) {
+            return res.status(response.status).json({
+                error: "Could not check this email."
+            });
+        }
+
+        const breaches = data.breaches?.[0] || [];
+
+        res.json({
+            found: breaches.length > 0,
+            breaches: breaches
+        });
+
+    } catch (error) {
+        console.error("Email check error:", error);
+
+        res.status(500).json({
+            error: "Something went wrong while checking the email."
+        });
+    }
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
