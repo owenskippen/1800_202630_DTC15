@@ -22,6 +22,7 @@ export default defineConfig({
         report: resolve(__dirname, "report.html"),
         alerts: resolve(__dirname, "alerts.html"),
         tips: resolve(__dirname, "tips.html"),
+        history: resolve(__dirname, "history.html"),
       },
     },
   },

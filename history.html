@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Scan History</title>
+  <meta name="comp1800 template" content="My 1800 App" />
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Other libraries go here -->
+  <link rel="stylesheet" href="./styles/style.css" />
+  <script type="module" src="/src/site-navbar.js"></script>
+  <script type="module" src="/src/site-footer.js"></script>
+</head>
+
+<body>
+  <!-- Navbar (Look in src.site-navbar.js if you want to change the code)-->
+  <site-navbar></site-navbar>
+
+  <!-- Main section of page-->
+  <main class="container py-4">
+    <section class="text-center mb-4">
+      <h1 class="fw-bold">Scan History</h1>
+      <p class="lead">Every link you have checked, newest first.</p>
+    </section>
+
+    <!-- history.js fills this with all of the user's scans from Firestore -->
+    <section>
+      <div id="scanHistory">
+        <p>Loading your scans...</p>
+      </div>
+      <a href="./scanner.html" class="btn btn-primary mt-3">Check a new link</a>
+    </section>
+  </main>
+  <!-- Main section of page end-->
+
+  <!-- Footer (Look in src.site-footer.js if you want to change the code)-->
+  <site-footer></site-footer>
+
+  <!-- Link to scripts of your own -->
+  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="./src/history.js"></script>
+</body>
+
+</html>

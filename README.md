@@ -7,6 +7,8 @@ The idea came from our course theme, *"Older and Wiser"*, and from our user surv
 
 Developed for the COMP 1800 course at BCIT, this project applies User-Centred Design practices and agile project management (Trello sprints), and uses Firebase for authentication, data storage, and hosting.
 
+**Live site:** https://dtc15-project.web.app
+
 ---
 
 
@@ -33,14 +35,15 @@ Developed for the COMP 1800 course at BCIT, this project applies User-Centred De
 | Page | File | Purpose | Status |
 |------|------|---------|--------|
 | Landing | `index.html` | Introduces the app | Done |
-| Login / Sign up | `login.html` | Firebase Authentication | Layout done, auth in progress |
-| Home | `main.html` | Dashboard with buttons to Check a link, Report a scam, Alerts, and Tips | Planned |
-| Scanner | `scanner.html` | Check & Verify a link, message, or sender | Planned |
-| Report | `report.html` | Report-a-scam form | Planned |
-| Alerts | `alerts.html` | Scam alerts and breach alerts | Planned |
+| Login / Sign up | `login.html` | Firebase Authentication | Done |
+| Home | `main.html` | Dashboard with buttons to Check a link, Report a scam, Alerts, and Tips, plus your recent scans, the latest alerts, and alert settings | Done |
+| Scanner | `scanner.html` | Check & Verify a link with VirusTotal | Done (needs the local server) |
+| Report | `report.html` | Report-a-scam form | Done |
+| Alerts | `alerts.html` | Scam alerts and breach alerts | Done |
 | Tips & Help | `tips.html` | Safety tips and support | Done |
+| Scan History | `history.html` | Every link you have scanned, newest first | Done |
 
-*Status as of Sprint 1.*
+*Status as of Sprint 4.*
 
 ---
 
@@ -49,7 +52,7 @@ Developed for the COMP 1800 course at BCIT, this project applies User-Centred De
 - **Frontend**: HTML, CSS, JavaScript, [Bootstrap 5](https://getbootstrap.com/)
 - **Build Tool**: [Vite](https://vitejs.dev/)
 - **Backend**: Firebase Authentication and Firebase Hosting
-- **Database**: Cloud Firestore
+- **Database**: Cloud Firestore, protected by security rules in `firestore.rules`
 - **Design & Planning**: Figma (wireframes), FigJam, Trello
 
 ---
@@ -65,23 +68,55 @@ To run the application locally:
 
 To build for production, run `npm run build`.
 
+The link scanner talks to a small Express server that keeps the VirusTotal API key private. To use it locally, add `VIRUSTOTAL_API_KEY` to your `.env` and run `node server/server.js` alongside `npm run dev`.
+
+To deploy the site to Firebase Hosting:
+
+1. Run `npm run build`.
+2. Run `firebase deploy --only hosting`.
+
+If you change `firestore.rules`, deploy them with `firebase deploy --only firestore:rules`.
+
+Scam and breach alerts are stored in the Firestore `alerts` collection (fields: `title`, `type` = `scam` or `breach`, `summary`, `details`, `createdAt`). Add new alerts in the Firebase console; the app can only read them.
+
 ---
 
 
 ## Project Structure
 ```
 1800_202630_DTC15/
+├── server/
+│   └── server.js         # VirusTotal link-check API
 ├── src/
+│   ├── alerts.js
+│   ├── auth-guard.js
+│   ├── firebase.js
+│   ├── history.js
+│   ├── home.js
+│   ├── login.js
 │   ├── main.js
-│   └── site-navbar.js
+│   ├── report.js
+│   ├── scan-list.js
+│   ├── scanner.js
+│   ├── site-footer.js
+│   ├── site-navbar.js
+│   └── tips.js
 ├── styles/
 │   ├── style.css
 │   └── tips.css
 ├── images/
 ├── index.html
 ├── login.html
+├── main.html
+├── scanner.html
+├── report.html
+├── alerts.html
 ├── tips.html
+├── history.html
 ├── skeleton.html
+├── firebase.json
+├── firestore.rules
+├── vite.config.js
 ├── package.json
 └── README.md
 ```
@@ -107,7 +142,8 @@ To build for production, run `npm run build`.
 
 ## Limitations and Future Work
 ### Limitations
-- The link scanner uses simple rules (e.g. non-HTTPS links, IP addresses, URL shorteners, misspelled brand names) and cannot catch every scam.
+- The link scanner relies on VirusTotal's reporting engines and cannot catch every scam.
+- The scanner's Express server is not deployed yet, so scanning only works when running the app locally.
 - The app gives guidance only and is not a replacement for antivirus or official security advice.
 
 ### Future Work
