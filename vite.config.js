@@ -7,9 +7,9 @@ export default defineConfig({
     proxy: {
       "/api": {
         target: "http://localhost:3000",
-        changeOrigin: true
-      }
-    }
+        changeOrigin: true,
+      },
+    },
   },
 
   build: {
@@ -24,6 +24,8 @@ export default defineConfig({
         tips: resolve(__dirname, "tips.html"),
         history: resolve(__dirname, "history.html"),
         breaches: resolve(__dirname, "breaches.html"),
+        profile: resolve(__dirname, "profile.html"),
+        guide: resolve(__dirname, "How_to_Use_DTC15.html"),
       },
     },
   },

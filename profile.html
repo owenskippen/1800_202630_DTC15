@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="./styles/style.css"/>
+    <script type="module" src="/src/site-navbar.js"></script>
+    <sscript type="module" src="/src/site-footer.js"></script>
+</head>
+<body>
+    <site-navbar></site-navbar>
+
+    <main class="container py-4">
+        <h1>Profile</h1>
+
+        <section class="alert-settings bg-light p-4 rounded mt-4">
+            <h2>Alert Settings</h2>
+            <p>choose which alerts you want to see.</p>
+
+            <div class="form-check form-switch">
+                <input  class="form-check-input" type="checkbox"
+            id="scamAlertsSwitch" data-alert-type="scam" disabled>
+                <label class="form-check-label" for="scamAlertsSwitch">Scam Alerts</label>
+
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="breachAlertsSwitch" data-alert-type="breach" disabled>
+                <label class="form-check-label" for="breachAlertsSwitch">Breach Alerts</label>
+            </div>
+            <p id="alertSettingsStatus" class="mt-2"></p>
+         </section>
+    </main>
+    <site-footer></site-footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/profile.js"></script>
+
+        
+    
+</body>
+</html>

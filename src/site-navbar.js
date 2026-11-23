@@ -1,7 +1,6 @@
 import { auth } from "./firebase.js";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
-
 class MainNavbar extends HTMLElement {
   constructor() {
     super();
@@ -44,6 +43,7 @@ class MainNavbar extends HTMLElement {
                             <li class="nav-item"><a class="nav-link" href="./report.html">Report</a></li>
                             <li class="nav-item"><a class="nav-link" href="./breaches.html">Breach Scanner</a></li>
                             <li class="nav-item"><a class="nav-link" href="./tips.html">Tips</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./profile.html">Profile</a></li>
                         </ul>
                     </div>
                 </div>
@@ -101,7 +101,8 @@ class MainNavbar extends HTMLElement {
 
   // Add the "active" class to the link for the page we are on
   highlightCurrentPage() {
-    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+    const currentPage =
+      window.location.pathname.split("/").pop() || "index.html";
 
     this.querySelectorAll(".navbar-links a").forEach((link) => {
       if (link.getAttribute("href") === "./" + currentPage) {
