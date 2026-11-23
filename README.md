@@ -36,14 +36,15 @@ Developed for the COMP 1800 course at BCIT, this project applies User-Centred De
 |------|------|---------|--------|
 | Landing | `index.html` | Introduces the app | Done |
 | Login / Sign up | `login.html` | Firebase Authentication | Done |
-| Home | `main.html` | Dashboard with buttons to Check a link, Report a scam, Alerts, and Tips, plus your recent scans, the latest alerts, and alert settings | Done |
+| Home | `main.html` | Dashboard with buttons to Check a link, Report a scam, Alerts, and Tips, plus your recent scans, the latest alerts, your breach checks, and alert settings | Done |
 | Scanner | `scanner.html` | Check & Verify a link with VirusTotal | Done (needs the local server) |
 | Report | `report.html` | Report-a-scam form | Done |
 | Alerts | `alerts.html` | Scam alerts and breach alerts | Done |
 | Tips & Help | `tips.html` | Safety tips and support | Done |
 | Scan History | `history.html` | Every link you have scanned, newest first | Done |
+| Breach Check | `breaches.html` | Check if an email appears in known data breaches; each email you check is saved once and listed on Home | Done (needs the local server) |
 
-*Status as of Sprint 4.*
+*Status as of Sprint 5.*
 
 ---
 
