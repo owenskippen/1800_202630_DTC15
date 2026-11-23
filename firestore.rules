@@ -52,6 +52,23 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Users can only access their own breach history.
+    // Each user + email pair has one document, so checking the same email
+    // again updates that document instead of making a copy.
+    match /breachHistory/{historyId} {
+      allow create: if request.auth != null
+                    && request.resource.data.userId == request.auth.uid;
+
+      allow read: if request.auth != null
+                  && resource.data.userId == request.auth.uid;
+
+      allow update: if request.auth != null
+                    && resource.data.userId == request.auth.uid
+                    && request.resource.data.userId == request.auth.uid;
+
+      allow delete: if false;
+    }
+
     // Block everything else
     match /{document=**} {
       allow read, write: if false;

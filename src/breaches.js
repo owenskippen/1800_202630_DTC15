@@ -1,20 +1,30 @@
 import { auth, db } from "./firebase.js";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 const emailCheckForm = document.getElementById("emailCheckForm");
 const emailInput = document.getElementById("emailInput");
 const emailCheckMessage = document.getElementById("emailCheckMessage");
 const emailResults = document.getElementById("emailResults");
+// One document per user + email (e.g. "abc123_jane%40example.com"),
+// so checking the same email again updates it instead of making a copy
+function breachHistoryId(uid, email) {
+  return uid + "_" + encodeURIComponent(email.toLowerCase());
+}
+
 async function saveBreachResult(email, data) {
+  // Wait for Firebase to finish restoring the login, or a quick submit isn't saved
+  await auth.authStateReady();
   const user = auth.currentUser;
   if (!user) {
     return;
   }
-  await addDoc(collection(db, "breachHistory"), {
+  const breaches = data.breaches || [];
+  await setDoc(doc(db, "breachHistory", breachHistoryId(user.uid, email)), {
     userId: user.uid,
-    email: email,
+    email: email.toLowerCase(),
     found: data.found,
-    breaches: data.breaches || [],
+    breaches: breaches,
+    breachCount: breaches.length,
     checkedAt: serverTimestamp(),
   });
 }

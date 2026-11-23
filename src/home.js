@@ -1,11 +1,12 @@
 import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, setDoc, collection, query, orderBy, limit, getDocs } from "firebase/firestore";
+import { doc, getDoc, setDoc, collection, query, where, orderBy, limit, getDocs } from "firebase/firestore";
 import { createScanItem } from "./scan-list.js";
 
-// How many scans and alerts to show under Recent Activity
+// How many scans, alerts and breach checks to show under Recent Activity
 const RECENT_SCAN_COUNT = 5;
 const RECENT_ALERT_COUNT = 3;
+const RECENT_BREACH_CHECK_COUNT = 5;
 // Read extra alerts so there are still 3 to show after hiding the types a user turned off
 const ALERT_FETCH_COUNT = 20;
 
@@ -185,7 +186,84 @@ function showAlertsAndSettings() {
   });
 }
 
+// Build one list row for a breach check; the row links to the breach checker
+function createBreachCheckItem(check) {
+  const item = document.createElement("a");
+  item.href = "./breaches.html";
+  item.className = "list-group-item list-group-item-action d-flex justify-content-between align-items-start gap-3";
+
+  const details = document.createElement("div");
+  details.className = "text-break";
+
+  // textContent keeps the email as plain text, never as HTML
+  const email = document.createElement("div");
+  email.className = "fw-semibold";
+  email.textContent = check.email;
+
+  const date = document.createElement("small");
+  date.className = "text-muted";
+  date.textContent = check.checkedAt ? "Checked " + check.checkedAt.toDate().toLocaleString() : "Checked just now";
+
+  details.append(email, date);
+
+  const count = check.breachCount ?? (check.breaches || []).length;
+  const badge = document.createElement("span");
+  badge.className = "badge rounded-pill " + (check.found ? "text-bg-danger" : "text-bg-success");
+  badge.textContent = check.found ? `Found in ${count} breach${count === 1 ? "" : "es"}` : "No breaches found";
+
+  item.append(details, badge);
+  return item;
+}
+
+// Read the logged-in user's breach checks and list each email once, newest first
+function showBreachChecks() {
+  const recentBreachChecks = document.getElementById("recentBreachChecks");
+
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) return;
+
+    try {
+      // Only this user's documents (the security rules require the userId filter)
+      const checksQuery = query(collection(db, "breachHistory"), where("userId", "==", user.uid));
+      const snapshot = await getDocs(checksQuery);
+
+      // Keep only the newest check for each email, so older saved copies never show twice
+      const newestByEmail = new Map();
+      snapshot.forEach((checkDoc) => {
+        const check = checkDoc.data();
+        const email = (check.email || "").toLowerCase();
+        const saved = newestByEmail.get(email);
+        if (!saved || checkTime(check) > checkTime(saved)) {
+          newestByEmail.set(email, check);
+        }
+      });
+
+      const checks = [...newestByEmail.values()]
+        .sort((a, b) => checkTime(b) - checkTime(a))
+        .slice(0, RECENT_BREACH_CHECK_COUNT);
+
+      // Keep the "You have not checked an email yet." message if there are no checks
+      if (checks.length === 0) return;
+
+      const list = document.createElement("div");
+      list.className = "list-group";
+      checks.forEach((check) => list.append(createBreachCheckItem(check)));
+
+      recentBreachChecks.replaceChildren(list);
+    } catch (error) {
+      console.error("Could not load breach checks:", error);
+      recentBreachChecks.innerHTML = "<p>Could not load your breach checks right now.</p>";
+    }
+  });
+}
+
+// When a breach check happened, in milliseconds (0 if the time is still being saved)
+function checkTime(check) {
+  return check.checkedAt ? check.checkedAt.toMillis() : 0;
+}
+
 document.addEventListener("DOMContentLoaded", setupHomeButtons);
 showUserName();
 showRecentScans();
 showAlertsAndSettings();
+showBreachChecks();
