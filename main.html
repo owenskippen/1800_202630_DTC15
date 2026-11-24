@@ -1,28 +1,35 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <title>Home</title>
+    <meta name="comp1800 template" content="My 1800 App" />
 
-<head>
-  <title>Home</title>
-  <meta name="comp1800 template" content="My 1800 App" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Other libraries go here -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script type="module" src="/src/site-navbar.js"></script>
+    <script type="module" src="/src/site-footer.js"></script>
+  </head>
 
-  <!-- Other libraries go here -->
-  <link rel="stylesheet" href="./styles/style.css" />
-  <script type="module" src="/src/site-navbar.js"></script>
-  <script type="module" src="/src/site-footer.js"></script>
-</head>
+  <body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+    <!-- Stuff for body goes here -->
 
-<body>
-  <!------------------------------>
-  <!-- Your HTML Layout go here -->
-  <!------------------------------>
-  <!-- Stuff for body goes here -->
+    <!-- Navbar (Look in src.site-navbar.js if you want to change the code)-->
+    <site-navbar></site-navbar>
 
-  <!-- Navbar (Look in src.site-navbar.js if you want to change the code)-->
-  <site-navbar></site-navbar>
+    <!-- Main section of page-->
+    <main class="home-page container py-4">
+      <!-- Greeting (#userName gets the real name from Firebase in Sprint 2) -->
+      <section class="text-center mb-4">
+        <h1 class="fw-bold">Welcome, <span id="userName">user</span>!</h1>
+        <p class="lead">What would you like to do today?</p>
+      </section>
 
   <!-- Main section of page-->
   <main class="home-page container py-4">
@@ -41,56 +48,50 @@
       <div class="col"><a href="./tips.html" class="home-btn" id="tipsBtn">Safety Tips</a></div>
     </section>
 
-    <!-- Recent activity (home.js fills this with the user's latest scans and alerts from Firestore) -->
-    <section class="recent-activity mt-5">
-      <h2>Recent Activity</h2>
+        <h3 class="h5 mt-3">Your recent scans</h3>
+        <div id="recentActivity" class="shadow">
+          <p>No recent activity yet.</p>
+        </div>
+        <a
+          href="./history.html"
+          class="d-inline-block mt-3"
+          id="scanHistoryLink"
+          >See all scans</a
+        >
 
-      <h3 class="h5 mt-3">Your recent scans</h3>
-      <div id="recentActivity" class="shadow">
-        <p>No recent activity yet.</p>
-      </div>
-      <a href="./history.html" class="d-inline-block mt-3" id="scanHistoryLink">See all scans</a>
+        <h3 class="h5 mt-4">Your breach checks</h3>
+        <div id="recentBreachChecks" class="shadow">
+          <p>You have not checked an email yet.</p>
+        </div>
+        <a
+          href="./breaches.html"
+          class="d-inline-block mt-3"
+          id="checkEmailLink"
+          >Check an email</a
+        >
+      </section>
 
-      <h3 class="h5 mt-4">Latest alerts</h3>
-      <div id="recentAlerts" class="shadow">
-        <p>No alerts right now.</p>
-      </div>
-      <a href="./alerts.html" class="d-inline-block mt-3" id="allAlertsLink">See all alerts</a>
+      <section class="recent-alerts mt-5">
+        <h3 class="h5 mt-4">Latest alerts</h3>
+        <div id="recentAlerts">
+          <p>No alerts right now.</p>
+        </div>
+        <a href="./alerts.html" class="d-inline-block mt-3" id="allAlertsLink"
+          >See all alerts</a
+        >
+      </section>
+    </main>
+    <!-- Main section of page end-->
 
-      <h3 class="h5 mt-4">Your breach checks</h3>
-      <div id="recentBreachChecks" class="shadow">
-        <p>You have not checked an email yet.</p>
-      </div>
-      <a href="./breaches.html" class="d-inline-block mt-3" id="checkEmailLink">Check an email</a>
-    </section>
+    <!-- Footer (Look in src.site-footer.js if you want to change the code)-->
+    <site-footer></site-footer>
 
-    <!-- Alert settings (home.js saves these to the user's document in Firestore) -->
-    <section class="alert-settings mt-5 shadow">
-      <h2>Alert settings</h2>
-      <p>Choose which alerts you want to see.</p>
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="scamAlertsSwitch" data-alert-type="scam" checked disabled>
-        <label class="form-check-label" for="scamAlertsSwitch">Scam alerts</label>
-      </div>
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="breachAlertsSwitch" data-alert-type="breach" checked disabled>
-        <label class="form-check-label" for="breachAlertsSwitch">Breach alerts</label>
-      </div>
-      <p id="alertSettingsStatus" class="mt-2 mb-0" aria-live="polite"></p>
-    </section>
-  </main>
-  <!-- Main section of page end-->
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
 
-  <!-- Footer (Look in src.site-footer.js if you want to change the code)-->
-  <site-footer></site-footer>
-
-  <!---------------------------------------------->
-  <!-- Your own JavaScript functions go here    -->
-  <!---------------------------------------------->
-
-  <!-- Link to scripts of your own -->
-  <script type="module" src="./src/main.js"></script>
-  <script type="module" src="./src/home.js"></script>
-</body>
-
+    <!-- Link to scripts of your own -->
+    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/home.js"></script>
+  </body>
 </html>

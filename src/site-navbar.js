@@ -59,6 +59,9 @@ class MainNavbar extends HTMLElement {
                                 <a class="nav-link" href="./tips.html">Tips</a>
                             </li>
 
+                            <li class="nav-item" id="profileNav">
+                              <a class="nav-link" href="./profile.html">Profile</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -71,6 +74,7 @@ class MainNavbar extends HTMLElement {
     const aboutNav = this.querySelector("#aboutNav");
     const homeNav = this.querySelector("#homeNav");
     const brandLink = this.querySelector("#brandLink");
+    const profileNav = this.querySelector("#profileNav");
 
     // Handle clicking Login or Logout
     loginLogoutLink.addEventListener("click", async (event) => {
@@ -108,6 +112,7 @@ class MainNavbar extends HTMLElement {
 
         // Show Home and hide About
         homeNav.classList.remove("d-none");
+        profileNav.classList.remove("d-none");
         aboutNav.classList.add("d-none");
 
         // Logo takes user to Home
@@ -130,6 +135,7 @@ class MainNavbar extends HTMLElement {
         // Show About and hide Home
         aboutNav.classList.remove("d-none");
         homeNav.classList.add("d-none");
+        profileNav.classList.add("d-none");
 
         // Logo takes user to About
         brandLink.href = "./index.html";
@@ -146,7 +152,8 @@ class MainNavbar extends HTMLElement {
 
   // Highlight the current page
   highlightCurrentPage() {
-    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+    const currentPage =
+      window.location.pathname.split("/").pop() || "index.html";
 
     this.querySelectorAll(".navbar-links a").forEach((link) => {
       if (link.getAttribute("href") === "./" + currentPage) {

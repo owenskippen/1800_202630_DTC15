@@ -1,6 +1,14 @@
 import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, setDoc, collection, query, where, orderBy, limit, getDocs } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  query,
+  orderBy,
+  limit,
+  getDocs,
+} from "firebase/firestore";
 import { createScanItem } from "./scan-list.js";
 
 // How many scans, alerts and breach checks to show under Recent Activity
@@ -34,7 +42,9 @@ function showUserName() {
     const userDoc = await getDoc(doc(db, "users", user.uid));
     // New documents store firstName/lastName; older ones store name or have no document yet
     const data = userDoc.exists() ? userDoc.data() : {};
-    const name = data.firstName ? `${data.firstName} ${data.lastName}`.trim() : (data.name || user.displayName);
+    const name = data.firstName
+      ? `${data.firstName} ${data.lastName}`.trim()
+      : data.name || user.displayName;
 
     if (name) {
       document.getElementById("userName").textContent = name;
@@ -53,7 +63,7 @@ function showRecentScans() {
       const scansQuery = query(
         collection(db, "users", user.uid, "scans"),
         orderBy("scanDate", "desc"),
-        limit(RECENT_SCAN_COUNT)
+        limit(RECENT_SCAN_COUNT),
       );
       const snapshot = await getDocs(scansQuery);
 
@@ -62,12 +72,15 @@ function showRecentScans() {
 
       const list = document.createElement("ul");
       list.className = "list-group";
-      snapshot.forEach((scanDoc) => list.append(createScanItem(scanDoc.data())));
+      snapshot.forEach((scanDoc) =>
+        list.append(createScanItem(scanDoc.data())),
+      );
 
       recentActivity.replaceChildren(list);
     } catch (error) {
       console.error("Could not load recent scans:", error);
-      recentActivity.innerHTML = "<p>Could not load your recent activity right now.</p>";
+      recentActivity.innerHTML =
+        "<p>Could not load your recent activity right now.</p>";
     }
   });
 }
@@ -76,7 +89,8 @@ function showRecentScans() {
 function createAlertItem(alert) {
   const item = document.createElement("a");
   item.href = "./alerts.html";
-  item.className = "list-group-item list-group-item-action d-flex justify-content-between align-items-start gap-3";
+  item.className =
+    "list-group-item list-group-item-action d-flex justify-content-between align-items-start gap-3";
 
   const details = document.createElement("div");
 
@@ -93,7 +107,8 @@ function createAlertItem(alert) {
 
   const isBreach = alert.type === "breach";
   const badge = document.createElement("span");
-  badge.className = "badge rounded-pill " + (isBreach ? "text-bg-danger" : "text-bg-warning");
+  badge.className =
+    "badge rounded-pill " + (isBreach ? "text-bg-danger" : "text-bg-warning");
   badge.textContent = isBreach ? "Breach alert" : "Scam alert";
 
   item.append(details, badge);
@@ -105,7 +120,8 @@ function renderRecentAlerts() {
   const recentAlerts = document.getElementById("recentAlerts");
 
   if (!alertPrefs.scam && !alertPrefs.breach) {
-    recentAlerts.innerHTML = "<p>You have turned off all alerts. You can turn them back on in Alert settings below.</p>";
+    recentAlerts.innerHTML =
+      "<p>You have turned off all alerts. You can turn them back on in Profile.</p>";
     return;
   }
 
@@ -125,32 +141,9 @@ function renderRecentAlerts() {
   recentAlerts.replaceChildren(list);
 }
 
-// Save one switch change to the user's document, and undo it if saving fails
-async function saveAlertPref(user, alertSwitch) {
-  const status = document.getElementById("alertSettingsStatus");
-  const type = alertSwitch.dataset.alertType;
-
-  alertPrefs[type] = alertSwitch.checked;
-  renderRecentAlerts();
-  status.textContent = "Saving...";
-
-  try {
-    // merge keeps the user's name and other fields
-    await setDoc(doc(db, "users", user.uid), { alertPrefs: alertPrefs }, { merge: true });
-    status.textContent = "Your alert settings are saved.";
-  } catch (error) {
-    console.error("Could not save alert settings:", error);
-    alertSwitch.checked = !alertSwitch.checked;
-    alertPrefs[type] = alertSwitch.checked;
-    renderRecentAlerts();
-    status.textContent = "Could not save your alert settings. Please try again.";
-  }
-}
-
-// Load the newest alerts and the user's alert settings, then fill Recent Activity and the switches
+// Load recent alerts based on the user's saved settings
 function showAlertsAndSettings() {
   const recentAlerts = document.getElementById("recentAlerts");
-  const alertSwitches = document.querySelectorAll(".alert-settings .form-check-input");
 
   onAuthStateChanged(auth, async (user) => {
     if (!user) return;
@@ -159,7 +152,7 @@ function showAlertsAndSettings() {
       const alertsQuery = query(
         collection(db, "alerts"),
         orderBy("createdAt", "desc"),
-        limit(ALERT_FETCH_COUNT)
+        limit(ALERT_FETCH_COUNT),
       );
       const [alertsSnapshot, userDoc] = await Promise.all([
         getDocs(alertsQuery),
@@ -174,13 +167,6 @@ function showAlertsAndSettings() {
       recentAlerts.innerHTML = "<p>Could not load alerts right now.</p>";
       return;
     }
-
-    alertSwitches.forEach((alertSwitch) => {
-      alertSwitch.checked = alertPrefs[alertSwitch.dataset.alertType];
-      alertSwitch.disabled = false;
-      // onchange (not addEventListener) so a second login event can't add a duplicate listener
-      alertSwitch.onchange = () => saveAlertPref(user, alertSwitch);
-    });
 
     renderRecentAlerts();
   });
