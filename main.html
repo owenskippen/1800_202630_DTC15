@@ -31,30 +31,22 @@
         <p class="lead">What would you like to do today?</p>
       </section>
 
-      <!-- Big buttons for each main feature -->
-      <!-- 2 x 2 on tablets and up, 1 column on phones -->
-      <section class="home-buttons row row-cols-1 row-cols-sm-2 g-3">
-        <div class="col">
-          <a href="./scanner.html" class="home-btn" id="checkLinkBtn"
-            >Check a Link</a
-          >
-        </div>
-        <div class="col">
-          <a href="./report.html" class="home-btn" id="reportScamBtn"
-            >Report a Scam</a
-          >
-        </div>
-        <div class="col">
-          <a href="./alerts.html" class="home-btn" id="alertsBtn">Alerts</a>
-        </div>
-        <div class="col">
-          <a href="./tips.html" class="home-btn" id="tipsBtn">Safety Tips</a>
-        </div>
-      </section>
+  <!-- Main section of page-->
+  <main class="home-page container py-4">
+    <!-- Greeting (#userName gets the real name from Firebase in Sprint 2) -->
+    <section class="text-center mb-4">
+      <h1 class="fw-bold">Welcome, <span id="userName">user</span>!</h1>
+      <p class="">What would you like to do today?</p>
+    </section>
 
-      <!-- Recent activity (home.js fills this with the user's latest scans and alerts from Firestore) -->
-      <section class="recent-activity mt-5">
-        <h2>Recent Activity</h2>
+    <!-- Big buttons for each main feature -->
+    <!-- 2 x 2 on tablets and up, 1 column on phones -->
+    <section class="home-buttons row row-cols-1 row-cols-sm-2 g-3">
+      <div class="col"><a href="./scanner.html" class="home-btn" id="checkLinkBtn">Check a Link</a></div>
+      <div class="col"><a href="./report.html" class="home-btn" id="reportScamBtn">Report a Scam</a></div>
+      <div class="col"><a href="./breaches.html" class="home-btn" id="alertsBtn">Breaches</a></div>
+      <div class="col"><a href="./tips.html" class="home-btn" id="tipsBtn">Safety Tips</a></div>
+    </section>
 
         <h3 class="h5 mt-3">Your recent scans</h3>
         <div id="recentActivity" class="shadow">

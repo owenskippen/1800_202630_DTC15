@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./styles/tips.css" />
     <script type="module" src="/src/site-navbar.js"></script>
     <script type="module" src="/src/site-footer.js"></script>
+    <script type="module" src="/src/back-button.js"></script>
   </head>
 
   <body>
@@ -26,18 +27,20 @@
 
     <!-- Main section of page-->
     <main class="tips-page container py-4">
+      <back-button></back-button>
+
       <section class="tips-header text-center mb-4">
-        <h1>Stay Safe Online</h1>
+        <h1 class="fw-bold">Stay Safe Online</h1>
         <p>Here are some simple tips to help you avoid online scams.</p>
       </section>
 
-      <section class="tips-section">
+      <section class="tips-section tip-card py-4 px-4 shadow">
         <!-- Official Safety Tips -->
         <h2>Safety Tips</h2>
         <div id="officialTipsContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 my-2">
         
-          <div class="loading-tips text-center">
-            <p>Loading safety tips...</p>
+          <div class="col-12 text-center mx-auto">
+            <p class="loading-tips">Loading safety tips...</p>
           </div>
         
         </div>
@@ -46,15 +49,15 @@
         <h2 class="mt-4">User Tips</h2>
         <div id="userTipsContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 my-2">
         
-          <div class="loading-tips-user text-center">
-            <p>Loading user tips...</p>
+          <div class="col-12 text-center mx-auto">
+            <p class="loading-tips-user">Loading user tips...</p>
           </div>
         
         </div>
       </section>
 
       <!-- Add a Tip -->
-      <section class="tip-card p-4 mt-4">
+      <section class="tip-card shadow p-4 mt-5">
         <h2>Add Your Own Safety Tip</h2>
         <p>Share a safety tip that could help other users.</p>
         <form id="addTipForm">
@@ -72,7 +75,7 @@
         </form>
       </section>
 
-      <section class="tip-card p-4 mt-4">
+      <section class="tip-card shadow p-4 mt-5">
         <h2>Need help?</h2>
         <p>
           If you think you have been scammed, stop responding and ask for help.

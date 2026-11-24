@@ -4,7 +4,17 @@ import 'bootstrap';
 // If you have custom global styles, import them as well:
 import '../styles/style.css';
 
-function sayHello() {
+import { auth } from "./firebase.js";
+import { onAuthStateChanged } from "firebase/auth";
 
-}
-document.addEventListener('DOMContentLoaded', sayHello);
+onAuthStateChanged(auth, (user) => {
+    const returnHomeContainer = document.querySelector("#returnHomeContainer");
+
+    if (returnHomeContainer) {
+        if (user) {
+            returnHomeContainer.style.display = "block";
+        } else {
+            returnHomeContainer.style.display = "none";
+        }
+    }
+});

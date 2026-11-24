@@ -143,7 +143,7 @@ function displayTip(tipDoc, container, user) {
   // Create the card
   const card = document.createElement("article");
 
-  card.className = "tips-card card p-3 h-100";
+  card.className = "card p-3 h-100 rounded-lg";
 
   card.style.position = "relative";
 

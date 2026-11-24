@@ -1,70 +1,64 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>My BCIT Project</title>
-    <meta name="comp1800 template" content="My 1800 App" />
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <title>My BCIT Project</title>
+  <meta name="comp1800 template" content="My 1800 App" />
 
-    <!-- Other libraries go here -->
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <script type="module" src="/src/site-navbar.js"></script>
-    <script type="module" src="/src/site-footer.js"></script>
-  </head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <body class="bodyIndex">
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
+  <!-- Other libraries go here -->
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <script type="module" src="/src/site-navbar.js"></script>
+  <script type="module" src="/src/site-footer.js"></script>
+</head>
 
-    <!-- Navbar (Look in src.site-navbar.js if you want to change the code)-->
-    <site-navbar></site-navbar>
+<body class="bodyIndex">
+  <!------------------------------>
+  <!-- Your HTML Layout go here -->
+  <!------------------------------>
+  <!-- Stuff for body goes here -->
 
-    <!-- Hero page-->
-    <div class="px-4 py-5 hero-section shadow">
-      <img
-        class="d-block mx-auto mb-4 hero-image"
-        src="../images/Stop-Scamming.png"
-        alt="Stop-Scamming"
-        width="880"
-        height="620"
-      />
-      <h1 class="display-5 fw-bold text-body-brand">
-        Let's stay safe together!
-      </h1>
-      <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Staying cyber safe has never been this easy.</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a href="./main.html" class="btn btn-primary btn-lg px-4 gap-3">
-            <i class="bi bi-house-door me-2"></i>
-            Get Started
-          </a>
+  <!-- Navbar (Look in src.site-navbar.js if you want to change the code)-->
+  <site-navbar></site-navbar>
 
-          <a href="./How_to_Use_DTC15.html" class="btn btn-primary btn-lg px-4">
-            <i class="bi bi-book me-2"></i>
-            Read More
-          </a>
-        </div>
+  <!-- Hero page-->
+  <div class="px-5 py-5 hero-section shadow">
+    <img class="d-block mx-auto mb-4 hero-image" src="../images/Stop-Scamming.png" alt="Stop-Scamming" width="880"
+      height="620" />
+    <h1 class="display-5 fw-bold text-body-brand">
+      Let's stay safe together!
+    </h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Staying cyber safe has never been this easy.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="./main.html" class="btn btn-primary btn-lg px-4 gap-3">
+          <i class="bi bi-house-door me-2"></i>
+          Get Started
+        </a>
+
+        <a href="./How_to_Use_DTC15.html" class="btn btn-outline-primary btn-lg px-4">
+          <i class="bi bi-book me-2"></i>
+          Read More
+        </a>
       </div>
     </div>
+  </div>
   </main>
-    <!-- Hero page end-->
+  <!-- Hero page end-->
 
-    <!-- Footer (Look in src.site-footer.js if you want to change the code)-->
-    <site-footer></site-footer>
+  <!-- Footer (Look in src.site-footer.js if you want to change the code)-->
+  <site-footer></site-footer>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
+  <!---------------------------------------------->
+  <!-- Your own JavaScript functions go here    -->
+  <!---------------------------------------------->
 
-    <!-- Link to scripts of your own -->
-    <script type="module" src="./src/main.js"></script>
-  </body>
+  <!-- Link to scripts of your own -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+
 </html>
