@@ -2,10 +2,6 @@ import { auth } from "./firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
 
 class BackButton extends HTMLElement {
-    constructor() {
-        super();
-    }
-
     connectedCallback() {
         this.renderButton();
 
