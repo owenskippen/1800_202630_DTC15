@@ -8,6 +8,7 @@ import {
   orderBy,
   limit,
   getDocs,
+  where
 } from "firebase/firestore";
 import { createScanItem } from "./scan-list.js";
 
